@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 
 const PORT = 8180;
 const webServer = express();
@@ -12,12 +13,13 @@ const results = {
 }
 
 webServer.use(express.json());
-
+webServer.use(express.static(path.join(__dirname, 'public')));
 webServer.use(express.urlencoded({ extended: true }));
 webServer.use(cors());
 
 
 webServer.get(`/`, (req,res) => {
+    console.log('dsalads')
     res.sendFile(__dirname + '/index.html');
 });
 
