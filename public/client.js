@@ -3,9 +3,9 @@ const RESULTS_SECTION = document.getElementById('results');
 const REFRESH_BTN = document.getElementById('refresh-btn');
 
 REFRESH_BTN.addEventListener('click', getResults);
-CLEAR_BTN.addEventListener('click', clear);
+//CLEAR_BTN.addEventListener('click', clear);
 
-clear
+
 
 async function getVariants(){
     try {
@@ -13,7 +13,6 @@ async function getVariants(){
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
-              
             }
         }));
 
