@@ -17,6 +17,16 @@ webServer.use(express.static(path.join(__dirname, 'public')));
 webServer.use(express.urlencoded({ extended: true }));
 webServer.use(cors());
 
+webServer.post(`\clear`, (req, res) => {
+    results = {
+        "Victor": "0",
+        "Sally": "0",
+        "John": "0",
+        "Sue": "0",
+        "Jill": "0"
+    }
+    res.send(results);
+});
 
 webServer.get(`/`, (req,res) => {
     console.log('dsalads')
