@@ -3,13 +3,10 @@ const RESULTS_SECTION = document.getElementById('results');
 const REFRESH_BTN = document.getElementById('refresh-btn');
 
 REFRESH_BTN.addEventListener('click', getResults);
-CLEAR_BTN.addEventListener('click', clear);
-
-clear
 
 async function getVariants(){
     try {
-        const variants = await fetch(new Request('http://localhost:8180/variants', {
+        const variants = await fetch(new Request('http://178.172.195.18:8180/variants', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -42,7 +39,7 @@ async function parseVariants(variants){
 
 async function sendVote(variant){
     try{
-        const response = await fetch(new Request(`http://localhost:8180/vote/${variant}`, {
+        const response = await fetch(new Request(`http://178.172.195.18:8180/vote/${variant}`, {
             method: 'POST'
         }));
         getResults();
@@ -52,7 +49,7 @@ async function sendVote(variant){
 }
 
 async function getResults() {
-    const response = await fetch(new Request(`http://localhost:8180/stat`,{
+    const response = await fetch(new Request(`http://178.172.195.18:8180/stat`,{
         method: 'POST',
         headers: {
             'Content-type': 'application/json'
@@ -60,8 +57,9 @@ async function getResults() {
     }));
     let data = await response.text();
     data = JSON.parse(data);
+    console.log(data);
     const resultDiv = document.createElement('div');
-    for (const [key, value] of Object.entries(data)) {
+    for (const [key, value] of Object.entries(data.results)) {
         const p = document.createElement('p');
         p.textContent = `${key}: ${value}`;
         resultDiv.appendChild(p);

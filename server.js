@@ -34,7 +34,8 @@ webServer.get(`/`, (req,res) => {
 });
 
 webServer.post(`/stat`, (req, res) =>{
-    res.send(JSON.stringify(results));
+    const totalVotes = Object.keys(results).reduce((acc, key) => acc + Number(results[key]), 0);
+    res.send({results, totalVotes});
 });
 
 // Тут я могу и через ссылку передать, и в теле. Давайте попробуем через ссылку сделать?!
